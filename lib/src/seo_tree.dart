@@ -55,14 +55,12 @@ abstract class SeoTreeNode {
     return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
   }
 
-  String head({
-    required head_tag.HeadTag tag,
-  }) {
+  String head({required head_tag.HeadTag tag}) {
     if (tag is head_tag.MetaTag) {
       final attributes = {
-        'name': tag.name,
+        tag.propKey: tag.name,
         'http-equiv': tag.httpEquiv,
-        'content': tag.content,
+        tag.propContent: tag.content,
       }
           .entries
           .where((entry) => entry.value != null)
@@ -82,8 +80,9 @@ abstract class SeoTreeNode {
           .where((entry) => entry.value != null)
           .map((entry) => '${entry.key}="${entry.value}"')
           .join(' ');
-
       return '<link $attributes flt-seo>';
+    } else if (tag is head_tag.ScriptTag) {
+      return '<script type="${tag.type}">${tag.body}</script>';
     }
 
     throw UnimplementedError('unsupported tag: $tag');

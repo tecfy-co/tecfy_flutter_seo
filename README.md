@@ -86,6 +86,7 @@ Seo.head(
   tags: [
     MetaTag(name: 'title', content: 'Flutter SEO Example'),
     LinkTag(rel: 'canonical', href: 'http://www.example.com'),
+    ScriptTag(type: 'application/ld+json', body: '{"@context":"http:\/\/schema.org\/","@type":"Product","name":"70R14 FRD16 82H","aggregateRating":{"@type":"AggregateRating","ratingValue":1,"reviewCount":"1"}}'),
   ],
   child: ...,
 ); // converts to: <meta name="title" content="Flutter SEO Example"><link rel="canonical" href="http://www.example.com" />
