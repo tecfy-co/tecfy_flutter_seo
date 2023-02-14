@@ -82,7 +82,7 @@ abstract class SeoTreeNode {
           .join(' ');
       return '<link $attributes flt-seo>';
     } else if (tag is head_tag.ScriptTag) {
-      return '<script type="${tag.type}">${tag.body}</script>';
+      return '<script type="${tag.type}" flt-seo>${tag.body}</script>';
     }
 
     throw UnimplementedError('unsupported tag: $tag');

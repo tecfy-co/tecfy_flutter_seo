@@ -103,11 +103,15 @@ class _SeoControllerState extends State<SeoController> {
         ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
         ..allowCustomElement(
           'meta',
-          attributes: ['name', 'http-equiv', 'content', 'flt-seo'],
+          attributes: ['name', 'property', 'http-equiv', 'content', 'flt-seo'],
         )
         ..allowCustomElement(
           'link',
           attributes: ['title', 'rel', 'type', 'href', 'media', 'flt-seo'],
+        )
+        ..allowCustomElement(
+          'script',
+          attributes: ['type', 'flt-seo'],
         ),
     );
   }
