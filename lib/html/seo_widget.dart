@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:seo/head_tag.dart' as head_tag;
 import 'package:seo/html/seo_controller.dart';
@@ -36,10 +37,14 @@ class Seo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SeoController.process(
-      context: context,
-      tag: tag,
-      child: child,
-    );
+    if (kIsWeb) {
+      return SeoController.process(
+        context: context,
+        tag: tag,
+        child: child,
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
+import 'package:flutter/foundation.dart';
 import 'package:universal_html/html.dart';
 
 import 'package:flutter/material.dart';
@@ -30,10 +31,14 @@ class SeoController extends StatefulWidget {
     required SeoTag tag,
     required Widget child,
   }) {
-    return context
-        .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()!
-        .tree
-        .process(tag, child);
+    if (kIsWeb) {
+      return context
+          .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()!
+          .tree
+          .process(tag, child);
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }
 
@@ -147,10 +152,14 @@ class _SeoControllerState extends State<SeoController> {
 
   @override
   Widget build(BuildContext context) {
-    return _InheritedSeoTreeWidget(
-      tree: widget.tree,
-      child: widget.child,
-    );
+    if (kIsWeb) {
+      return _InheritedSeoTreeWidget(
+        tree: widget.tree,
+        child: widget.child,
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 
   @override
